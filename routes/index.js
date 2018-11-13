@@ -51,12 +51,14 @@ router.post('/cadastrar', function(request, response, next) {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
     firebase.database().ref().child('/sensores').child(sensor).set({
+      sensor: sensor,
       status: status,
     });
 
     console.log('\n\nCadastro efetuado com sucesso!\n\n');
   }else{
     firebase.database().ref().child('/sensores').child(sensor).set({
+      sensor: sensor,
       status: status,
     });
 
