@@ -17,6 +17,9 @@
   <link href="/stylesheets/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
   <script type="text/javascript" src="/javascripts/validacao.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
 </head>
 
 <body class="fixed-sidebar">
@@ -60,14 +63,14 @@
                   <div class="form-group row">
                     <label class="col-lg-2 col-form-label">Sensor</label>
                     <div class="col-lg-5">
-                      <input id="sensor" type="text" placeholder="Sensor" class="form-control">
+                      <input type="text" name="sensor" placeholder="Sensor" class="form-control">
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label class="col-lg-2 col-form-label">Status</label>
                     <div class="col-lg-2">
-                      <input id="status" type="number" min="0" max="1" placeholder="Status" class="form-control">
+                      <input type="number" name="status" min="0" max="1" placeholder="Status" class="form-control">
                     </div>
                   </div>
 
@@ -111,5 +114,4 @@
   </script>
 
   </body
-
-  </html>
+</html>

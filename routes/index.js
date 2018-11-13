@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pessoa =  [];
-var sensor = [];
+var sens = [];
 var firebase = require("firebase");
 
 // Firebase App is always required and must be first
@@ -28,25 +28,35 @@ router.get('/', function(req, res, next) {
 //Abrir dashboard
 router.get('/principal', function(req, res, next) {
   res.render('principal', { title: 'AC 6 - Principal' });
+  next();
 });
 
 //Cadastro de sensor
 router.post('/cadastrar', function(request, response, next) {
 
-  var sensor = request.bodyParser.sensor;
-  var status = request.bodyParser.status;
+  var sensor = request.body.sensor;
+  var status = request.body.status;
+
+  hash = {
+    nomeLogin: request.body.nomeLogin,
+    senhaLogin: request.body.senhaLogin
+  }
+
+  sens.push(hash);
+  console.log("--------------");
+  console.log("Hash de pessoa");
+  console.log(pessoa);
+  console.log("--------------");
 
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
     firebase.database().ref().child('/sensores').child(sensor).set({
-      sensor: sensor,
       status: status,
     });
 
-    console.log('Cadastro efetuado com sucesso!');
+    console.log('\n\nCadastro efetuado com sucesso!\n\n');
   }else{
     firebase.database().ref().child('/sensores').child(sensor).set({
-      sensor: sensor,
       status: status,
     });
 
@@ -58,7 +68,7 @@ router.post('/cadastrar', function(request, response, next) {
 });
 
 //Autenticacao de usuario
-router.post('/autenticacao/', function(request, response, next) {
+router.post('/autenticacao', function(request, response, next) {
 
   var nomeLogin = request.body.nomeLogin;
   var senhaLogin = request.body.senhaLogin;
@@ -77,36 +87,46 @@ router.post('/autenticacao/', function(request, response, next) {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
 
-    firebase.auth().signInWithEmailAndPassword("ac@ac.com", "123456ac")
+    firebase.auth().signInWithEmailAndPassword(nomeLogin, senhaLogin)
+    .then(function(firebaseUser) {
+      response.redirect('/principal');
+
+    })
     .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+
       if (errorCode === 'auth/wrong-password') {
-        alert('Senha incorreta.');
+        console.log("\n\nSenha incorreta.\n\n");
+        response.redirect('/');
       } else {
-        alert(errorMessage);
+        console.log(errorMessage);
       }
       console.log(error);
     });
 
   }else{
-    firebase.auth().signInWithEmailAndPassword("ac@ac.com", "123456ac")
+
+    firebase.auth().signInWithEmailAndPassword(nomeLogin, senhaLogin)
+    .then(function(firebaseUser) {
+      response.redirect('/principal');
+
+    })
     .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+
       if (errorCode === 'auth/wrong-password') {
-        alert('Senha incorreta.');
+        console.log("\n\nSenha incorreta.\n\n");
+        response.redirect('/');
       } else {
-        alert(errorMessage);
+        console.log(errorMessage);
       }
       console.log(error);
     });
   }
-
-  response.redirect('/principal');
-  next();
 });
 
 module.exports = router;

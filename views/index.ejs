@@ -16,6 +16,7 @@
 
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
 
+
   <script type="text/javascript" src="/javascripts/validacao.js"></script>
 </head>
 
@@ -27,12 +28,12 @@
       <h2>Bem vindo ao AC 6</h2>
 
       <p>Faça login para continuar no sistema</p>
-      <form class="m-t" role="form" action="/autenticacao/" method="POST" onsubmit="return validacao()">
+      <form class="m-t" role="form" action="/autenticacao" method="POST" onsubmit="return validacao()">
         <div class="form-group">
-          <input id="nomeLogin" type="email" class="form-control" placeholder="Email" required="" value="">
+          <input type="email" name="nomeLogin" class="form-control" placeholder="Email" required="" value="">
         </div>
         <div class="form-group">
-          <input id="senhaLogin" type="password" class="form-control" placeholder="Senha" required="" value="">
+          <input type="password" name="senhaLogin" class="form-control" placeholder="Senha" required="" value="">
         </div>
         <button type="submit" class="btn btn-primary block full-width m-b">Acessar</button>
 
