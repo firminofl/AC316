@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AC 316 - Login</title>
+
+  <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="/stylesheets/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+  <link href="/stylesheets/animate.css" rel="stylesheet">
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
+  <script type="text/javascript" src="/javascripts/validacao.js"></script>
+</head>
+
+<body class="gray-bg">
+
+  <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+
+      <h2>Bem vindo ao AC 6</h2>
+
+      <p>Faça login para continuar no sistema</p>
+      <form class="m-t" role="form" action="/autenticacao/" method="POST" onsubmit="return validacao()">
+        <div class="form-group">
+          <input id="nomeLogin" type="email" class="form-control" placeholder="Email" required="" value="">
+        </div>
+        <div class="form-group">
+          <input id="senhaLogin" type="password" class="form-control" placeholder="Senha" required="" value="">
+        </div>
+        <button type="submit" class="btn btn-primary block full-width m-b">Acessar</button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Mainly scripts -->
+  <script src="/javascripts/jquery-3.1.1.min.js"></script>
+  <script src="/javascripts/popper.min.js"></script>
+  <script src="/javascripts/bootstrap.js"></script>
+
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC7Iav23rAfUe3ABiY_Ffejj0593Dj5lC8",
+    authDomain: "ac-6-63da6.firebaseapp.com",
+    databaseURL: "https://ac-6-63da6.firebaseio.com",
+    projectId: "ac-6-63da6",
+    storageBucket: "",
+    messagingSenderId: "5977518793"
+  };
+  firebase.initializeApp(config);
+</script>
+
+</body>
+
 </html>
