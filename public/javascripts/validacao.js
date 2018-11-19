@@ -4,9 +4,9 @@ function validacao(){
 	var senhaLogin = $("#senhaLogin").val();
 
 	//primeira validação
-	if (nsenhaLoginome == "") {
-		alert("Por favor digite seu email.");
-		$("senhaLogin").focus();
+	if (nomeLogin == "") {
+		alert("Por favor digite seu login.");
+		$("nomeLogin").focus();
 		return false; //Mantem na pagina até o campo ser preenchido
 	}
 
@@ -14,6 +14,26 @@ function validacao(){
 	if (senhaLogin == "") {
 		alert("Por favor digite sua senha.");
 		$("senhaLogin").focus();
+		return false; //Mantem na pagina até o campo ser preenchido
+	}
+	return true
+}
+
+function validacaoUsuario() {
+  var usuarioCadastroLogin = $("#usuarioCadastro").val();
+	var senhaCadastroLogin = $("#senhaCadastro").val();
+
+	//primeira validação
+	if (usuarioCadastroLogin == '') {
+		alert("Por favor digite seu login.");
+		$("usuarioCadastro").focus();
+		return false; //Mantem na pagina até o campo ser preenchido
+	}
+
+	//segunda validação
+	if (senhaCadastroLogin == '') {
+		alert("Por favor digite sua senha.");
+		$("senhaCadastro").focus();
 		return false; //Mantem na pagina até o campo ser preenchido
 	}
 	return true
