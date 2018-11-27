@@ -48,11 +48,45 @@
           editarElement.setAttribute('type', 'checkbox')
           editarElement.setAttribute('data-toggle', 'toggle')
           editarElement.setAttribute('value', 'Editar')
+          editarElement.setAttribute('id', 'check')
           editarElement.classList.add('btn')
-          //editarElement.onclick = editItem(rows[i])
+          editarElement.onclick = editItem(sensores[i])
           editarCell.appendChild(editarElement)
+          count++
 
         }
       }
     });
   }());
+
+function editItem(item){
+  console.log("Sensor: "+ item.sensor)
+  //console.log("Dentro: "+ $('#check').isChecked = true)
+    return function() {
+      if (item.sensor == 'Janela'){
+          if(item.status = 'Aberta'){
+            firebase.database().ref().child('/sensores').child(item.sensor).set({
+              sensor: item.sensor,
+              status: 'Fechada',
+            });
+          }else{
+            firebase.database().ref().child('/sensores').child(item.sensor).set({
+              sensor: item.sensor,
+              status: 'Aberta',
+            });
+          }
+      }else if (item.sensor == 'Porta'){
+        if(item.status = 'Aberta'){
+          firebase.database().ref().child('/sensores').child(item.sensor).set({
+            sensor: item.sensor,
+            status: 'Fechada',
+          });
+        }else{
+          firebase.database().ref().child('/sensores').child(item.sensor).set({
+            sensor: item.sensor,
+            status: 'Aberta',
+          });
+        }
+    }
+  }
+}
