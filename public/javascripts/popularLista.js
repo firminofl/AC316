@@ -9,28 +9,50 @@
     messagingSenderId: "5977518793"
   };
   firebase.initializeApp(config);
-  
+
     //const bigTextEvaluationStudents = document.getElementById('bigTextEvaluationStudents');
     //const dbBigTextEvaluationStudentsRef = firebase.database().ref().child('bigTextEvaluationStudents');
     //dbBigTextEvaluationStudentsRef.on('value', snap => bigTextEvaluationStudents.innerText = snap.val());
-  
+
     var table = document.querySelector('#minhaTabela tbody');
 
     const dbSensoresRef = firebase.database().ref().child('/sensores');
 
     dbSensoresRef.on('value', snap => {
-      
+
         while(table.hasChildNodes()) {
               table.removeChild(table.firstChild);
         }
-  
+
       var sensores = snap.val();
       for(var i in sensores) {
         var row = table.insertRow(-1);
         for(var j in sensores[i]) {
-                  cell = row.insertCell(-1);
-                  cell.innerHTML = sensores[i][j];
-              }
-          }
+          var newRow = table.insertRow(-1)
+          var count = 0
+
+          var actionCell = newRow.insertCell(count)
+
+          var sensorCell = newRow.insertCell(count)
+          var sensorValue = document.createTextNode(sensores[i][j])
+          sensorCell.appendChild(sensorValue)
+          count++;
+
+          var statusCell = newRow.insertCell(count)
+          var statusValue = document.createTextNode(sensores[i][j])
+          statusCell.appendChild(statusValue)
+          count++;
+
+          var editarCell = newRow.insertCell(count)
+          var editarElement = document.createElement('input')
+          editarElement.setAttribute('type', 'checkbox')
+          editarElement.setAttribute('data-toggle', 'toggle')
+          editarElement.setAttribute('value', 'Editar')
+          editarElement.classList.add('btn')
+          //editarElement.onclick = editItem(rows[i])
+          editarCell.appendChild(editarElement)
+
+        }
+      }
     });
   }());
